@@ -6,6 +6,7 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] float speed = 0.0f;
     [SerializeField] float rotationSpeed = 0.0f;
+    [SerializeField] bool lookCameraRotation = false;
 
     private Animator animator = null;
     private int animTurn = 0;
@@ -26,6 +27,10 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        if (lookCameraRotation)
+        {
+            transform.rotation = new Quaternion(transform.rotation.x, camera.forward.y, transform.rotation.z, transform.rotation.w);
+        }
         Move();
         Rotate();
     }
@@ -41,15 +46,13 @@ public class PlayerMove : MonoBehaviour
     {
         float axis = Input.GetAxis("Vertical");
         float translation = axis * speed * Time.deltaTime;
-        //if (axis != 0)
-        //    transform.rotation = new Quaternion(transform.rotation.x, camera.rotation.y, transform.rotation.z, transform.rotation.w);
         transform.Translate(Vector3.forward * translation);
         animator.SetFloat(animSpeed, axis);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        rigidbody.isKinematic = true;
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    rigidbody.isKinematic = true;
+    //}
 
 }

@@ -2,28 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnableOrDisable
+public enum ActiveOrInactive
 {
-    Enable,
-    Disable
+    Active,
+    Inactive
 }
 
 public class SetActive : MonoBehaviour
 {
-    [SerializeField] private EnableOrDisable enableOrDisable;
-    private Dictionary<EnableOrDisable, bool> typesEvent = null;
-    private void Start()
-    {
-        Debug.Log("Started");
-    }
+    [SerializeField] private ActiveOrInactive switchTo;
+    private Dictionary<ActiveOrInactive, bool> typesEvent = null;
     public void Execute()
     {
-        //typesEvent = new Dictionary<EnableOrDisable, bool>()
-        //{
-        //    { EnableOrDisable.Enable, true },
-        //    { EnableOrDisable.Disable, false },
-        //};
-        gameObject.SetActive(true);
+        typesEvent = new Dictionary<ActiveOrInactive, bool>()
+        {
+            { ActiveOrInactive.Active, true },
+            { ActiveOrInactive.Inactive, false },
+        };
+        gameObject.SetActive(typesEvent[switchTo]);
     }
 
  

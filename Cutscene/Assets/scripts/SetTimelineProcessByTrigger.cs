@@ -11,7 +11,7 @@ public enum TimelineEvent
     Stop
 }
 
-public class SetTimelineProcessByTrigger : MonoBehaviour
+public class SetTimelineProcessByTrigger : Predicator
 {
 
     [SerializeField] private TimelineEvent timelineEvent;
@@ -35,12 +35,18 @@ public class SetTimelineProcessByTrigger : MonoBehaviour
             { TimelineEvent.Play, playableDirector.Play},
             { TimelineEvent.Stop, playableDirector.Stop}
         };
+
+        Init();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.tag);
-        typesEvent[timelineEvent]();
-        stuffToExecute.Invoke();
+        isTargetObject = IsTargetObject();
+        if (isTargetObject(other))
+        {
+            Debug.Log(other.tag);
+            typesEvent[timelineEvent]();
+            stuffToExecute.Invoke();
+        }
     }
 }
