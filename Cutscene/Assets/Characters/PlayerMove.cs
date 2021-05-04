@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] float speed;
-    [SerializeField] float rotationSpeed;
+    [SerializeField] float speed = 0.0f;
+    [SerializeField] float rotationSpeed = 0.0f;
 
-    private Animator animator;
-    private int animTurn;
-    private int animSpeed;
+    private Animator animator = null;
+    private int animTurn = 0;
+    private int animSpeed = 0;
 
-    private Rigidbody rigidbody;
-    private Transform camera;
+    private Rigidbody rigidbody = null;
+    private Transform camera = null;
     
     void Start()
     {
@@ -41,8 +41,8 @@ public class PlayerMove : MonoBehaviour
     {
         float axis = Input.GetAxis("Vertical");
         float translation = axis * speed * Time.deltaTime;
-        if (axis != 0)
-            transform.rotation = new Quaternion(transform.rotation.x, camera.rotation.y, transform.rotation.z, transform.rotation.w);
+        //if (axis != 0)
+        //    transform.rotation = new Quaternion(transform.rotation.x, camera.rotation.y, transform.rotation.z, transform.rotation.w);
         transform.Translate(Vector3.forward * translation);
         animator.SetFloat(animSpeed, axis);
     }
