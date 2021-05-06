@@ -44,7 +44,6 @@ public class SetTimelineProcessByTrigger : Predicator
         isTargetObject = IsTargetObject();
         if (isTargetObject(other))
         {
-            Debug.Log(other.tag);
             typesEvent[timelineEvent]();
             stuffToExecute.Invoke();
         }
