@@ -27,32 +27,30 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (lookCameraRotation)
-        {
-            transform.rotation = new Quaternion(transform.rotation.x, camera.forward.y, transform.rotation.z, transform.rotation.w);
-        }
+        //transform.LookAt(new Vector3(2*transform.position.x + camera.position.x, transform.position.y, 2 * transform.position.z + camera.position.z));
+        transform.rotation = new Quaternion(transform.rotation.x, camera.rotation.y, transform.rotation.z, transform.rotation.w);
         Move();
-        Rotate();
+        //Rotate();
     }
 
     private void Rotate()
     {
-        float axis = Input.GetAxis("Horizontal");
-        animator.SetFloat(animTurn, axis);
-        transform.Rotate(Vector3.up * axis * rotationSpeed * Time.deltaTime);
+        float axisRot = Input.GetAxis("Horizontal");
+        animator.SetFloat(animTurn, axisRot);
+        transform.Rotate(Vector3.up * axisRot * rotationSpeed * Time.deltaTime);
     }
-
+    
     private void Move()
     {
-        float axis = Input.GetAxis("Vertical");
-        float translation = axis * speed * Time.deltaTime;
-        transform.Translate(Vector3.forward * translation);
-        animator.SetFloat(animSpeed, axis);
+        float axisMove = Input.GetAxis("Vertical");
+        float translation = axisMove * speed * Time.deltaTime;
+        animator.SetFloat(animSpeed, axisMove);
+        if (translation != 0f)
+        {
+            transform.rotation = new Quaternion(transform.rotation.x, camera.transform.forward.y, transform.position.z, transform.rotation.w);
+            transform.Translate(Vector3.forward * translation);
+        }
+        
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    rigidbody.isKinematic = true;
-    //}
 
 }
