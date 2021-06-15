@@ -4,41 +4,22 @@ using UnityEngine;
 
 public class Sacura : MonoBehaviour
 {
-    [SerializeField] private GameObject leaves;
-    [SerializeField] private GameObject smell;
-
-    private ParticleSystem[] leavesParticles;
-    private ParticleSystem[] smellParticles;
+    [SerializeField] private Particles leavesParticles;
+    [SerializeField] private Particles smellParticles;
 
     void Start()
     {
-        leavesParticles = GetComponentsInChildren<ParticleSystem>();
-        smellParticles = GetComponentsInChildren<ParticleSystem>();
-    }
-
-    private void PlayParticles(ParticleSystem[] particles)
-    {
-        foreach (ParticleSystem p in particles)
-        {
-            p.Play();
-        }
-    }
-
-    private void StopParticles(ParticleSystem[] particles)
-    {
-        foreach (ParticleSystem p in particles)
-        {
-            p.Stop();
-        }
+        leavesParticles = GetComponentInChildren<Particles>();
+        smellParticles = GetComponentInChildren<Particles>();
     }
 
     public void PlayLeaves()
     {
-        PlayParticles(leavesParticles);
+        leavesParticles.PlayParticles();
     }
 
     public void StopLeaves()
     {
-        StopParticles(leavesParticles);
+        leavesParticles.StopParticles();
     }
 }

@@ -27,10 +27,8 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        //transform.LookAt(new Vector3(2*transform.position.x + camera.position.x, transform.position.y, 2 * transform.position.z + camera.position.z));
-        transform.rotation = new Quaternion(transform.rotation.x, camera.rotation.y, transform.rotation.z, transform.rotation.w);
         Move();
-        //Rotate();
+        Rotate();
     }
 
     private void Rotate()
@@ -45,9 +43,11 @@ public class PlayerMove : MonoBehaviour
         float axisMove = Input.GetAxis("Vertical");
         float translation = axisMove * speed * Time.deltaTime;
         animator.SetFloat(animSpeed, axisMove);
+        //float angle = Vector3.Angle(new Vector3(0f, camera.forward.y, 0f), new Vector3(0f, transform.forward.y, 0f));
+        //Debug.Log(angle);
         if (translation != 0f)
         {
-            transform.rotation = new Quaternion(transform.rotation.x, camera.transform.forward.y, transform.position.z, transform.rotation.w);
+            //transform.rotation = new Quaternion(0f, camera.rotation.y, 0f, transform.rotation.w);
             transform.Translate(Vector3.forward * translation);
         }
         
