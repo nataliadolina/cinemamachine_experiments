@@ -6,6 +6,7 @@ TagManager:
   tags:
   - freeLook
   - opening
+  - Hand
   layers:
   - Default
   - TransparentFX

@@ -6,7 +6,7 @@ public class Particles : MonoBehaviour
 {
     private ParticleSystem[] particles;
 
-    private void Start()
+    private void OnEnable()
     {
         particles = GetComponentsInChildren<ParticleSystem>();
     }

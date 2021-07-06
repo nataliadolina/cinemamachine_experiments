@@ -6,8 +6,6 @@ using System;
 public class Chest : MonoBehaviour
 {
     [SerializeField] private Button button = null;
-    [SerializeField] private float takeTime = 0f;
-
     private Animator animator;
 
     private Action open;
@@ -23,31 +21,33 @@ public class Chest : MonoBehaviour
         player = FindObjectOfType<Player>();
 
         pickUp = GetComponentInChildren<BasePickUp>();
+        pickUp.gameObject.SetActive(false);
     }
 
     protected virtual void Open()
     {
         animator.SetTrigger("open");
-        player.Take(pickUp, takeTime);
         if (pickUp != null)
         {
+            pickUp.gameObject.SetActive(true);
             pickUp.WakeUp();
         }  
     }
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerMove>())
+        if (other.GetComponent<Player>())
         {
             button.enabled = true;
             button.interactable = true;
-            FindObjectOfType<Player>().OpenChest += Open;
-            Debug.Log(FindObjectOfType<Player>().OpenChest);
+            var player = FindObjectOfType<Player>();
+            player.OpenChest += Open;
+            Debug.Log(player.OpenChest);
         }
     }
     protected virtual void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<PlayerMove>())
+        if (other.GetComponent<Player>())
         {
             button.enabled = false;
             button.interactable = false;
