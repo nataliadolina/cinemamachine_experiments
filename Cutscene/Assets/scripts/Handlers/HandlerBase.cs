@@ -25,7 +25,7 @@ public class HandlerBase : MonoBehaviour
         check = SetTypeVerification();
     }
 
-    private void Start()
+    private void OnEnable()
     {
         movingAgent = GetComponentInParent<MovingAgent>();
     }

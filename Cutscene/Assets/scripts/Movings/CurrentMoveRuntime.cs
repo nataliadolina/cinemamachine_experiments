@@ -6,13 +6,15 @@ public class CurrentMoveRuntime : RuntimeBase
 {
     private MovingAgent movingAgent;
 
-    private void Start()
+    private void OnEnable()
     {
         movingAgent = GetComponentInParent<MovingAgent>();
     }
 
     public override void Run()
     {
+        Debug.Log("---CurrentMoveRuntime---");
+        Debug.Log("---CurrentMoveRuntime---", movingAgent.CurrentMove);
         movingAgent.CurrentMove.Move();
     }
 }

@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class StayStill : MovementBase
 {
-
     public override void Move()
     {
-        
+        Debug.Log("__Still__");
     }
 }

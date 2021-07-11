@@ -9,16 +9,10 @@ public class Walk : MovementBase
     [SerializeField] private TypeMove typeMove;
     private Transform targetPoint = null;
 
-   // private Transform enemyTransform = null;
-
-    //private NavMeshAgent navMeshAgent;
-
     protected override void Init()
     {
-        //GameObject main = GetComponentInParent<MovingAgent>().gameObject;
-        //enemyTransform = main.transform;
+        movingSystem.CreateWay();
         targetPoint = movingSystem.GetStartPoint();
-        //navMeshAgent = main.GetComponent<NavMeshAgent>();
     }
 
     public override void Move()
@@ -34,11 +28,5 @@ public class Walk : MovementBase
     {
         parentTransform.LookAt(targetPoint);
         parentTransform.position = Vector3.MoveTowards(parentTransform.position, targetPoint.position, speed * Time.fixedDeltaTime);
-        //navMeshAgent.SetDestination(targetPoint.position);
-    }
-
-    protected override void StuffToExecuteWhenTerminate()
-    {
-        //navMeshAgent.isStopped = true;
     }
 }

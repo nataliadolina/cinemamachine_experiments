@@ -33,7 +33,7 @@ public class MovingSystem : MonoBehaviour
         return points[0];
     }
 
-    private void Awake()
+    public void CreateWay()
     {
         typesMovement = new Dictionary<TypeMove, Action>()
         {
@@ -53,6 +53,8 @@ public class MovingSystem : MonoBehaviour
             }
             pointsLimit = points.Length;
         }
+
+        Debug.Log(points);
     }
 
     private void CircleChangeCurrentPoint()

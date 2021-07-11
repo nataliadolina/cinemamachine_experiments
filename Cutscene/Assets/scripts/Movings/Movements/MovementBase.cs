@@ -12,7 +12,7 @@ public abstract class MovementBase : MonoBehaviour
 
     protected Transform parentTransform;
 
-    private MovingAgent movingAgent;
+    protected MovingAgent movingAgent;
     public UnityEvent setAnim;
 
     protected Animator animator;
@@ -48,10 +48,16 @@ public abstract class MovementBase : MonoBehaviour
     {
         previousState = movingAgent.CurrentMove;
         movingAgent.ChangeCurrentState(nextState);
+        nextState.StuffToExecuteWhenStart();
         StuffToExecuteWhenTerminate();
     }
 
     protected virtual void StuffToExecuteWhenTerminate()
+    {
+
+    }
+
+    protected virtual void StuffToExecuteWhenStart()
     {
 
     }

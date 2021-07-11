@@ -12,16 +12,23 @@ public class Chest : MonoBehaviour
     private Player player;
 
     private BasePickUp pickUp;
+    private bool enabled = false;
 
-    private void Awake()
+    private void OnEnable()
     {
-        animator = GetComponent<Animator>();
-        open = FindObjectOfType<Player>().OpenChest;
-        button.enabled = false;
-        player = FindObjectOfType<Player>();
+        if (!enabled)
+        {
+            Transform main = transform.parent;
+            animator = GetComponent<Animator>();
+            open = FindObjectOfType<Player>().OpenChest;
+            button.enabled = false;
+            player = FindObjectOfType<Player>();
 
-        pickUp = GetComponentInChildren<BasePickUp>();
-        pickUp.gameObject.SetActive(false);
+            pickUp = main.GetComponentInChildren<BasePickUp>();
+            pickUp.gameObject.SetActive(false);
+            enabled = true;
+        }
+        
     }
 
     protected virtual void Open()

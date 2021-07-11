@@ -12,20 +12,21 @@ public class BasePickUp : MonoBehaviour
     private MovementBase[] movesPatterns;
 
     private Collider[] colliders;
-    private Rigidbody[] rigidBodies;
+    private Rigidbody[] rigidbodies;
 
     private MovingAgent movingAgent;
 
+
     private void OnEnable()
     {
-        Init();
         aura = GetComponentInChildren<Particles>();
         movesPatterns = GetComponentsInChildren<MovementBase>();
         movingAgent = GetComponent<MovingAgent>();
 
         colliders = GetComponentsInChildren<Collider>();
-        rigidBodies = GetComponentsInChildren<Rigidbody>();
-        Sleep();
+        rigidbodies = GetComponentsInChildren<Rigidbody>();
+
+        Init();
 
     }
 
@@ -38,7 +39,6 @@ public class BasePickUp : MonoBehaviour
     {
         transform.parent = null;
         aura.PlayParticles();
-        movingAgent.CurrentMove.Terminate();
     }
 
     public virtual void Sleep()
@@ -48,7 +48,7 @@ public class BasePickUp : MonoBehaviour
             coll.enabled = false;
         }
 
-        foreach (Rigidbody rb in rigidBodies)
+        foreach (Rigidbody rb in rigidbodies)
         {
             rb.isKinematic = true;
         }
@@ -61,7 +61,7 @@ public class BasePickUp : MonoBehaviour
             coll.enabled = true;
         }
 
-        foreach (Rigidbody rb in rigidBodies)
+        foreach (Rigidbody rb in rigidbodies)
         {
             rb.isKinematic = false;
         }

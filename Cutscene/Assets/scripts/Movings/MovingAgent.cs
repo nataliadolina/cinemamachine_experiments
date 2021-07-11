@@ -10,7 +10,7 @@ public class MovingAgent : MonoBehaviour
 
     public MovementBase CurrentMove { get { return currentMove; } set { currentMove = value; } }
     
-    private void Start()
+    private void OnEnable()
     {
         still = GetComponentInChildren<StayStill>();
     }

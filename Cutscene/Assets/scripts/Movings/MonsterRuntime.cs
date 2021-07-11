@@ -20,20 +20,17 @@ public class MonsterRuntime : RuntimeBase
 
     public override void Run()
     {
-        if (!(movingAgent.CurrentMove is StayStill | movingAgent.CurrentMove is FloatUp))
+        var heading = transform.position - player.position;
+        var distance = heading.magnitude;
+
+        if (distance < pursueDist & movingAgent.CurrentMove)
         {
-            var heading = transform.position - player.position;
-            var distance = heading.magnitude;
+            movingAgent.CurrentMove = pursue;
+        }
 
-            if (distance < pursueDist & movingAgent.CurrentMove)
-            {
-                movingAgent.CurrentMove = pursue;
-            }
-
-            else
-            {
-                movingAgent.CurrentMove = walk;
-            }
+        else
+        {
+            movingAgent.CurrentMove = walk;
         }
         movingAgent.CurrentMove.Move();
     }
