@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Transform hand;
     public Transform Hand { get { return hand; } }
-    public Action OpenChest;
 
     private int totalScore;
     public int TotalScore { get { return totalScore; } set { totalScore += value; } }
@@ -22,10 +21,6 @@ public class Player : MonoBehaviour
         
     }
 
-    public void OpenChests()
-    {
-        OpenChest();
-    }
 
     public void Take(BasePickUp pickUp)
     {

@@ -4,20 +4,27 @@ using UnityEngine;
 
 public class FloatUp : MovementBase
 {
+    [SerializeField] private GameObject triggerHandler = null;
     [SerializeField] private float height = 1f;
 
     private float startPoint;
     private BasePickUp pickUp;
 
+    private GameObject chest;
+
     protected override void Init()
     {
         pickUp = GetComponentInParent<BasePickUp>();
         startPoint = parentTransform.position.y;
+
+        triggerHandler.SetActive(false);
+
+        var monsterTransform = pickUp.transform;
+        chest = monsterTransform.parent.GetComponentInChildren<Chest>().gameObject;
     }
 
     public override void Move()
     {
-        Debug.Log("Float");
         float delta = parentTransform.position.y - startPoint;
         if (delta < height)
         {
@@ -34,6 +41,7 @@ public class FloatUp : MovementBase
 
     protected override void StuffToExecuteWhenTerminate()
     {
-        pickUp.MakeCollidable();
+        triggerHandler.SetActive(true);
+        Destroy(chest);
     }
 }

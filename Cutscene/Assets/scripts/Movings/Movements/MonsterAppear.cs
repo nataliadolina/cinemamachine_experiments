@@ -11,12 +11,16 @@ public class MonsterAppear : MovementBase
 
     private Transform monsterTransform;
     private BasePickUp pickUp;
+    private GameObject chest;
 
     protected override void Init()
     {
+
         monsterRigidbody = GetComponentInParent<Rigidbody>();
-        monsterTransform = GetComponentInParent<BasePickUp>().transform;
         pickUp = GetComponentInParent<BasePickUp>();
+        monsterTransform = pickUp.transform;
+        chest = monsterTransform.parent.GetComponentInChildren<Chest>().gameObject;
+
 
         triggerHandler.SetActive(false);
         AddForce();
@@ -47,5 +51,6 @@ public class MonsterAppear : MovementBase
         monsterRigidbody.isKinematic = true;
         movingAgent.ChangeCurrentRuntime(nextRuntime);
         triggerHandler.SetActive(true);
+        Destroy(chest);
     }
 }

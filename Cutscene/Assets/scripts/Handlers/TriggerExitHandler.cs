@@ -10,7 +10,6 @@ public class TriggerExitHandler : HandlerBase
     {
         if (check(other.transform))
         {
-            Debug.Log("TriggerExit");
             movingAgent.ChangeCurrentState(toState);
             stuffToExecute.Invoke();
         }

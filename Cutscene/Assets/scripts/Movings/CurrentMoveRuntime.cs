@@ -13,8 +13,6 @@ public class CurrentMoveRuntime : RuntimeBase
 
     public override void Run()
     {
-        Debug.Log("---CurrentMoveRuntime---");
-        Debug.Log("---CurrentMoveRuntime---", movingAgent.CurrentMove);
         movingAgent.CurrentMove.Move();
     }
 }

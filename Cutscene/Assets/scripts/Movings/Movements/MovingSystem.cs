@@ -54,7 +54,6 @@ public class MovingSystem : MonoBehaviour
             pointsLimit = points.Length;
         }
 
-        Debug.Log(points);
     }
 
     private void CircleChangeCurrentPoint()

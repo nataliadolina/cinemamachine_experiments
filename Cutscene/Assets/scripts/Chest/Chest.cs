@@ -5,33 +5,30 @@ using UnityEngine.UI;
 using System;
 public class Chest : MonoBehaviour
 {
-    [SerializeField] private Button button = null;
+    [SerializeField] private Particles appearParticles;
+    [SerializeField] private Particles destroyParticles;
+
     private Animator animator;
 
     private Action open;
     private Player player;
 
     private BasePickUp pickUp;
-    private bool enabled = false;
 
     private void OnEnable()
     {
-        if (!enabled)
-        {
-            Transform main = transform.parent;
-            animator = GetComponent<Animator>();
-            open = FindObjectOfType<Player>().OpenChest;
-            button.enabled = false;
-            player = FindObjectOfType<Player>();
+        appearParticles.PlayParticles();
 
-            pickUp = main.GetComponentInChildren<BasePickUp>();
-            pickUp.gameObject.SetActive(false);
-            enabled = true;
-        }
+        Transform main = transform.parent;
+        animator = GetComponent<Animator>();
+        player = FindObjectOfType<Player>();
+
+        pickUp = main.GetComponentInChildren<BasePickUp>();
+        pickUp.gameObject.SetActive(false);
         
     }
 
-    protected virtual void Open()
+    public virtual void Open()
     {
         animator.SetTrigger("open");
         if (pickUp != null)
@@ -41,24 +38,24 @@ public class Chest : MonoBehaviour
         }  
     }
 
+    private void OnDestroy()
+    {
+        destroyParticles.transform.parent = null;
+        destroyParticles.PlayParticles();
+    }
+
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Player>())
         {
-            button.enabled = true;
-            button.interactable = true;
-            var player = FindObjectOfType<Player>();
-            player.OpenChest += Open;
-            Debug.Log(player.OpenChest);
+            OpenButton.chestToOpen = this;
         }
     }
     protected virtual void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<Player>())
         {
-            button.enabled = false;
-            button.interactable = false;
-            FindObjectOfType<Player>().OpenChest -= Open;
+            OpenButton.chestToOpen = null;
         }
     }
 
