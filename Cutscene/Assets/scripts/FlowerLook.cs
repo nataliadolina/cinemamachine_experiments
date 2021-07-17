@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StayStill : MovementBase
+public class FlowerLook : MonoBehaviour
 {
-    public override void Move()
-    {
-
-    }
+   
 }

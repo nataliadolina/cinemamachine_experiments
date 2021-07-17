@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Attack : MovementBase
 {
-    [SerializeField] float timeBeetweenAttacks;
-    private int harm;
+    [SerializeField] float timeBeetweenAttacks = 1f;
+    [SerializeField] float attackDist = 2f;
+    private float harm;
 
     private float currentTime = 0f;
     private Player player;
@@ -31,8 +32,16 @@ public class Attack : MovementBase
         {
             currentTime = 0f;
             animator.SetTrigger("Attack");
-            CallParticles();
-            player.TotalScore = harm;
+
+            var heading = transform.position - player.transform.position;
+            var distToPlayer = heading.magnitude;
+
+            if (distToPlayer <= attackDist)
+            {
+                player.TotalScore = harm;
+                CallParticles();
+            }
+
         }
         currentTime += Time.deltaTime;
     }

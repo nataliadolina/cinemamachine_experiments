@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BasePickUp : MonoBehaviour
 {
-    [SerializeField] protected int score = 0;
-    public int Score { get { return score; } set { score += value; } }
+    [SerializeField] protected float score = 0;
+    public float Score { get { return score; } set { score += value; } }
 
     protected Particles aura;
     private MovementBase initialMove;
@@ -16,9 +16,10 @@ public class BasePickUp : MonoBehaviour
 
     private MovingAgent movingAgent;
 
+    private Animator animator;
 
     private void OnEnable()
-    {
+    {    
         aura = GetComponentInChildren<Particles>();
         movesPatterns = GetComponentsInChildren<MovementBase>();
         movingAgent = GetComponent<MovingAgent>();
@@ -28,9 +29,15 @@ public class BasePickUp : MonoBehaviour
 
         Init();
 
+        animator = GetComponentInChildren<Animator>();
     }
 
     protected virtual void Init()
+    {
+
+    }
+
+    public virtual void GetHarm(float value)
     {
 
     }
@@ -39,6 +46,16 @@ public class BasePickUp : MonoBehaviour
     {
         transform.parent = null;
         aura.PlayParticles();
+    }
+
+    public void DisableAnimator()
+    {
+        animator.enabled = false;
+    }
+
+    public virtual void SetStaticPosition()
+    {
+
     }
 
     public virtual void Sleep()

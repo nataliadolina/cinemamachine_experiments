@@ -19,8 +19,8 @@ public class FloatUp : MovementBase
 
         triggerHandler.SetActive(false);
 
-        var monsterTransform = pickUp.transform;
-        chest = monsterTransform.parent.GetComponentInChildren<Chest>().gameObject;
+        var mainTransform = pickUp.transform;
+        chest = mainTransform.parent.GetComponentInChildren<Chest>().gameObject;
     }
 
     public override void Move()
