@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class Monster : BasePickUp
 {
-    private Animator animator;
     private float anim = 0.0f;
 
     protected override void Init()
     {
-        animator = GetComponentInChildren<Animator>();
         anim = Animator.StringToHash("Move");
     }
 

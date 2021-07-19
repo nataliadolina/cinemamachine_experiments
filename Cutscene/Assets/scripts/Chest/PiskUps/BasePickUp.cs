@@ -16,7 +16,7 @@ public class BasePickUp : MonoBehaviour
 
     private MovingAgent movingAgent;
 
-    private Animator animator;
+    protected Animator animator;
 
     private void OnEnable()
     {    
@@ -27,9 +27,9 @@ public class BasePickUp : MonoBehaviour
         colliders = GetComponentsInChildren<Collider>();
         rigidbodies = GetComponentsInChildren<Rigidbody>();
 
-        Init();
-
         animator = GetComponentInChildren<Animator>();
+
+        Init();
     }
 
     protected virtual void Init()

@@ -31,6 +31,11 @@ public class MovingAgent : MonoBehaviour
         CurrentMove.SetAnim();
     }
 
+    public void TerminateCurrentState()
+    {
+        CurrentMove.Terminate();
+    }
+
     public void SetToStill()
     {
         CurrentMove = still;

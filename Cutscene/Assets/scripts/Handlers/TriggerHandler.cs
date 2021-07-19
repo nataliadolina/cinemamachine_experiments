@@ -9,7 +9,6 @@ public class TriggerHandler : HandlerBase
     {
         if (check(other.transform))
         {
-            movingAgent.CurrentMove.Terminate();
             stuffToExecute.Invoke();
         }
     }

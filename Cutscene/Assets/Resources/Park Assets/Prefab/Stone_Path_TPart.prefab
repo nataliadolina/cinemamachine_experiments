@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4760548352524861195}
   - component: {fileID: 1237457363172803570}
   - component: {fileID: 2645470484241834216}
+  - component: {fileID: 4753792665666429143}
   m_Layer: 0
   m_Name: Stone_Path_TPart
   m_TagString: Untagged
@@ -55,6 +56,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,6 +82,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &2645470484241834216
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -89,7 +93,20 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 786836965275743241, guid: e677a06aa69708643808aa73b6e5ea44, type: 3}
+--- !u!65 &4753792665666429143
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653165874232522542}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.6463306, y: 0.0911398, z: 4.7590513}
+  m_Center: {x: 0.022691846, y: 0.0455699, z: -0.00000023760116}

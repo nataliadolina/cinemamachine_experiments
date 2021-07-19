@@ -11,9 +11,6 @@ public class Flower : BasePickUp
     private Player player = null;
 
     private float initialScore = 0f;
-    private Vector3 initialScale = new Vector3(0,0,0);
-
-    public Vector3 InitialScale { get { return initialScale;  } set { initialScale = value; } }
 
     private GameObject currentMesh = null;
 
@@ -24,7 +21,6 @@ public class Flower : BasePickUp
     {
         player = FindObjectOfType<Player>();
         initialScore = score;
-        initialScale = transform.localScale * 0.5f;
 
         flowersContainer = FindObjectOfType<FlowersContainer>();
 
@@ -55,11 +51,6 @@ public class Flower : BasePickUp
         SetMesh();
         transform.parent = null;
         aura.PlayParticles();
-    }
-
-    public override void SetStaticPosition()
-    {
-
     }
 
     public void GiveToPlayer()

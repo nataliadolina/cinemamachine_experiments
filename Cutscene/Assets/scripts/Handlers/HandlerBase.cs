@@ -14,7 +14,7 @@ public class HandlerBase : MonoBehaviour
 {
     [SerializeField] private TypeAim typeAim;
     protected Predicate<Transform> check;
-    protected MovingAgent movingAgent;
+    
     public UnityEvent stuffToExecute;
 
     private void Awake()
@@ -23,11 +23,6 @@ public class HandlerBase : MonoBehaviour
             stuffToExecute = new UnityEvent();
 
         check = SetTypeVerification();
-    }
-
-    private void OnEnable()
-    {
-        movingAgent = GetComponentInParent<MovingAgent>();
     }
 
     private Predicate<Transform> SetTypeVerification()

@@ -7,6 +7,7 @@ public class Chest : MonoBehaviour
 {
     [SerializeField] private Particles appearParticles;
     [SerializeField] private Particles destroyParticles;
+    [SerializeField] private GameObject selectionAura;
 
     private Animator animator;
 
@@ -15,17 +16,22 @@ public class Chest : MonoBehaviour
 
     private BasePickUp pickUp;
 
-    private void OnEnable()
+    private void Start()
     {
-        appearParticles.PlayParticles();
-
         Transform main = transform.parent;
         animator = GetComponent<Animator>();
         player = FindObjectOfType<Player>();
 
+        selectionAura.SetActive(false);
+
         pickUp = main.GetComponentInChildren<BasePickUp>();
         pickUp.gameObject.SetActive(false);
         
+    }
+
+    public void playerAppearParticles()
+    {
+        appearParticles.PlayParticles();
     }
 
     public virtual void Open()
@@ -44,18 +50,30 @@ public class Chest : MonoBehaviour
         destroyParticles.PlayParticles();
     }
 
-    protected virtual void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Player>())
         {
-            OpenButton.chestToOpen = this;
+            ChestsController.chestToOpen = this;
+            selectionAura.SetActive(true);
         }
     }
-    protected virtual void OnTriggerExit(Collider other)
+
+    protected void OnTriggerStay(Collider other)
     {
         if (other.GetComponent<Player>())
         {
-            OpenButton.chestToOpen = null;
+            ChestsController.chestToOpen = this;
+            selectionAura.SetActive(true);
+        }
+    }
+
+    protected void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<Player>())
+        {
+            ChestsController.chestToOpen = null;
+            selectionAura.SetActive(false);
         }
     }
 

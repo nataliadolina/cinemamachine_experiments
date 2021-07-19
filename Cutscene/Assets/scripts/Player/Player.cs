@@ -101,6 +101,12 @@ public class Player : MonoBehaviour
     }
     #endregion
 
+
+    private void OnCollisionEnter(Collider other)
+    {
+        Debug.Log(other.tag);
+    }
+
     public void Take(BasePickUp pickUp)
     {
         pickUp.transform.position = hand.position;
