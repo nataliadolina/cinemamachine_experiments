@@ -885,6 +885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   appearParticles: {fileID: 0}
   destroyParticles: {fileID: 0}
+  selectionAura: {fileID: 0}
 --- !u!65 &1151043177
 BoxCollider:
   m_ObjectHideFlags: 0
