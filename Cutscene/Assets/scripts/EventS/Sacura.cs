@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Sacura : MonoBehaviour
 {
-    [SerializeField] private Particles leavesParticles;
-    [SerializeField] private Particles smellParticles;
+    [SerializeField] private Particles leavesParticles = null;
+    [SerializeField] private Particles smellParticles = null;
 
     void Start()
     {
@@ -21,5 +21,11 @@ public class Sacura : MonoBehaviour
     public void StopLeaves()
     {
         leavesParticles.StopParticles();
+    }
+
+    public void ChangeLook(GameObject toLook)
+    {
+        Instantiate(toLook, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

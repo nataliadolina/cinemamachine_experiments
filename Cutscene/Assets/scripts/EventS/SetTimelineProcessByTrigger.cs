@@ -29,7 +29,7 @@ public class SetTimelineProcessByTrigger : Predicator
 
     void Start()
     {
-        playableDirector = GetComponent<PlayableDirector>();
+        playableDirector = GetComponentInChildren<PlayableDirector>();
         typesEvent = new Dictionary<TimelineEvent, Action>()
         {
             { TimelineEvent.Play, playableDirector.Play},

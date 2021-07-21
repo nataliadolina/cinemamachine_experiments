@@ -17,6 +17,8 @@ public class Flower : BasePickUp
     private FlowersContainer flowersContainer = null;
     private Rigidbody flowerRigidbody = null;
 
+    
+
     protected override void Init()
     {
         player = FindObjectOfType<Player>();
